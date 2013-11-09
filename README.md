@@ -6,10 +6,10 @@ Repositório que contém a aplicação que desenvolvemos no 1º Hackathon USP Ci
 
 Equipe:
 
-* (Marcos Garcia)[http://github.com/marcker];
-* Elaine Fabiola;
+* [Marcos Garcia](http://github.com/marcker);
+* [Elaine Fabiola](https://github.com/elainefabiola);
 * Hugo Tanaka;
 * Ryoji Neto;
-* Áliston Cassimiro;
-* Ricardo Ogliari;
+* [Áliston Cassimiro](https://github.com/cassimiro);
+* [Ricardo Ogliari](https://github.com/ricardoogliari);
 * Mariana Hungria.
