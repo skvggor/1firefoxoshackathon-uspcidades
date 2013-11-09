@@ -1,8 +1,8 @@
 {
-  "version": "1",
-  "name": "Save Our City",
+  "version": "0.0.1",
+  "name": "Cidade++",
   "launch_path": "/index.html",
-  "description": "Save Our City",
+  "description": "Cidade++",
   "icons": {
     "16": "/images/logo16.png",
     "32": "/images/logo32.png",
@@ -14,13 +14,13 @@
     "128": "/images/logo128.png"
   },
   "developer": {
-    "name": "THT",
-    "url": "http://thingshackerteam.blogspot.com"
+    "name": "Equipe Cidade++",
+    "url": ""
   },
   "installs_allowed_from": [
     "*"
   ],
-  "default_locale": "en",
+  "default_locale": "pt-BR",
   "permissions": {
     "desktop-notification": {
       "description": "To show notifications"
@@ -31,7 +31,7 @@
   },
   "locales": {
     "pt_BR": {
-      "name": "Salve nossa cidade",
+      "name": "Cidade++",
       "description": "Ajude a transformar o trânsito e as ruas da sua cidade."
     }
   }
