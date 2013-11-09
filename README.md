@@ -6,7 +6,7 @@ Repositório que contém a aplicação que desenvolvemos no 1º Hackathon USP Ci
 
 Equipe:
 
-* Marcos Garcia;
+* (Marcos Garcia)[http://github.com/marcker];
 * Elaine Fabiola;
 * Hugo Tanaka;
 * Ryoji Neto;
