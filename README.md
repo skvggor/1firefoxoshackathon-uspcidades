@@ -8,8 +8,8 @@ Equipe:
 
 * [Marcos Garcia](http://github.com/marcker);
 * [Elaine Fabiola](https://github.com/elainefabiola);
-* Hugo Tanaka;
-* Ryoji Neto;
+* [Hugo Tanaka](https://github.com/hugoht1);
+* [Ryoji Neto](https://github.com/Ryojikn);
 * [Áliston Cassimiro](https://github.com/cassimiro);
 * [Ricardo Ogliari](https://github.com/ricardoogliari);
 * Mariana Hungria.
