@@ -20,3 +20,7 @@ Uma pequena base de conhecimento que adquirimos enquanto trabalhávamos no app:
 
 * Permissões podem causar problemas na execução de scripts PHP
   * Ver: http://wiki.serversp.com.br/index.php?title=HTTP_500_-_Internal_server_error&oldid=279
+
+* Não utilizar muitos `alert`s para retornar o que se deseja saber ou observar.
+  Isso pode ocasionar enganos, tais como o bloqueio destes `alert`s, o que te fará
+  pensar que seu app não está funcionando.
