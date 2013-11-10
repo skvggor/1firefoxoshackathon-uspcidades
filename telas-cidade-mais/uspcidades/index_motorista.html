@@ -18,7 +18,7 @@
     // Wait for Cordova to connect with the device
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    function findMyCurrentLocation(){
+function findMyCurrentLocation(){
   var geoService = navigator.geolocation;
   if (geoService) {
     navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy:true});
@@ -27,8 +27,53 @@
   }
 }
 
+function verifyCurrentLocation(){
+  var geoService = navigator.geolocation;
+  if (geoService) {
+    navigator.geolocation.getCurrentPosition(verifyLocation,errorHandler,{enableHighAccuracy:true});
+  } else {
+    alert("Your Browser does not support GeoLocation.");
+  }
+}
+
+function verifyLocation(position){
+  //Create the latlng object based on the GPS Position retrieved
+  var latlng2 = new google.maps.LatLng (position.coords.latitude, position.coords.longitude);
+
+  var xhr2 = new XMLHttpRequest({ mozSystem: true });
+
+    xhr2.open("GET", "http://elainesoares.info/uspcidades/admin-area/json-ocorrencias.php?lat="+latlng2.latitude+
+      "&lng="+latlng2.longitude);
+    xhr2.responseType = "json";
+    xhr2.send();
+
+    xhr2.onreadystatechange = function()
+    {  
+      if (xhr2.readyState == 4)
+      {
+        var json = this.response;
+        console.log(json);
+
+        var ocorrencias = json.distance;
+        console.log(ocorrencias);
+        if (ocorrencias > 1){
+          alert("Sua localização com raio de 150 metros possui um alto número de incidência de alagamentos.\nTenha cuidado!");
+        }
+      }
+    };
+
+    xhr2.onerror = function ()
+    {
+      alert("Erro!");
+    };
+
+
+}
+
+ 
+
+
 function showCurrentLocation(position){
-  console.log(position.coords.latitude + "," + position.coords.longitude);  
   //Create the latlng object based on the GPS Position retrieved
   var latlng = new google.maps.LatLng (position.coords.latitude, position.coords.longitude);
   
@@ -49,46 +94,61 @@ function showCurrentLocation(position){
   //Display the Map
   map = new google.maps.Map ($content[0], options);
 
-  //Create the Marker and Drop It
-  new google.maps.Marker ({ map : map, 
+
+  var xhr = new XMLHttpRequest({ mozSystem: true });
+    xhr.open("GET", "http://elainesoares.info/uspcidades/admin-area/json-avisos.php");
+    xhr.responseType = "json";
+    xhr.send();
+    xhr.onreadystatechange = function()
+    {
+      if (xhr.readyState == 4)
+      {
+      var json = this.response;
+      var conteudos = [];
+      var infowindow;
+      var aviso = [];
+      var latlng = [];
+
+      for (i = 0; i < json.avisos.length; i++) {
+          aviso = json.avisos[i];
+          latlng[i] = new google.maps.LatLng (aviso.latitude, aviso.longitude);
+          var marcador = new google.maps.Marker ({ 
+                            map : map, 
                             animation : google.maps.Animation.DROP,
-                            position : latlng  
-                          });  
+                            position : latlng[i]  
+                        });
 
- iconeMarcador = 'http://grupomauaeregiao.com.br/imagens/icone.png';
+          conteudos[i] =
+            "<div class='infowindow'>" +
+              "<div class='endereco-mapa'>" +
+                "<p>" +
+                  aviso.usuario + " <br />" +
+                  (aviso.id_tipo_aviso == 1 ? "Alagamento Transitável" : aviso.id_tipo_aviso == 2 ? "Alagamento Intransitável":
+                  aviso.id_tipo_aviso == 3 ? "Colisão" : aviso.id_tipo_aviso == 4 ? "Atropelamento" : "Buraco") + " <br />" +
+                "</p>" +
+              "</div>" +
+            "</div>";
 
-  var latlng2 = new google.maps.LatLng (-23.56858,-46.64116);
-  var marcador = new google.maps.Marker ({ map : map, 
-    animation : google.maps.Animation.DROP,
-    position : latlng2,
-    icon: iconeMarcador
-  });  
+          infowindow = new google.maps.InfoWindow({
+            content: conteudos[i]
+          });
+        
+          google.maps.event.addListener(marcador, 'click', (function(marcador, i) {
+            return function() {
+                infowindow.setContent(conteudos[i]);
+                infowindow.open(map, marcador);
+            }
+          })(marcador, i));
+        }
 
-   var conteudoInfoWindow =
-"<div class='infowindow'>" +
-"<div class='nome-empresa'>" +
-"<p>Grupo Mauá e Regiao de Comunicação</p>" +
-"</div>" +
-"<div class='endereco-mapa'>" +
-"<p>" +
-"Rua Clodoaldo Portugal Caribé, 276 <br />" +
-"Vila Assis Brasil - Mauá - SP. <br />" +
-"CEP: 09370-620" +
-"</p>" +
-"</div>" +
-"</div>";
+      }
+    };
 
-  var infowindow = new google.maps.InfoWindow({
-    content: conteudoInfoWindow
-  });
-  
-  google.maps.event.addListener(marcador, 'click', function () {
-    infowindow.open(map, marcador);
-  });
-  /*google.maps.event.addListener(marcador, 'click', function() {
-    console.log(map.getZoom());
-    map.setZoom(8);
-  });*/
+    xhr.onerror = function ()
+    {
+      alert("Erro!");
+    }
+
 
 }
 
@@ -127,8 +187,24 @@ function errorHandler(error){
       jQuery('div.content.' + contentClass).addClass('active');
 
       params = pageParams;
+    }
+
+    function showAndLocation(contentClass, pageParams) {
+      jQuery('div.content').removeClass('active');
+      jQuery('div.content.' + contentClass).addClass('active');
+
+      params = pageParams;
 
       findMyCurrentLocation();
+    }
+
+    function showAndVerify(contentClass, pageParams) {
+      jQuery('div.content').removeClass('active');
+      jQuery('div.content.' + contentClass).addClass('active');
+
+      params = pageParams;
+
+      verifyCurrentLocation();
     }
 
     jQuery('document').ready(function() {
@@ -151,9 +227,9 @@ function errorHandler(error){
         <h1 class='title'>Clique sobre a opção desejada</h1>
         <ul data-role="listview" data-inset="true" data-filter="false">
           <li><a href="#" onclick="show('list-saldo');">Saldo</a></li>
-          <li><a href="#" onclick="show('list-zona');">Zona Azul</a></li>
+          <li><a href="#" onclick="showAndVerify('list-zona');">Zona Azul</a></li>
           <li><a href="#" onclick="show('list-recarga');">Recarga</a></li>
-          <li><a href="#" onclick="show('list-mapa');">Mapa</a></li>
+          <li><a href="#" onclick="showAndLocation('list-mapa');">Mapa</a></li>
         </ul>
       </div>
 

@@ -12,7 +12,7 @@
   "default_locale": "pt-br",
   "fullscreen": "true",
   "type": "privileged",
-  "permissions": {
+    "permissions": {
         "geolocation": {
             "description" : "Used to locate me"
         },
