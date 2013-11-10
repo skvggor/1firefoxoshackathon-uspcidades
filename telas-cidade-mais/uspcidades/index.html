@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Caidade</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/take-photo.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.3.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+   
+
+   
+
+    // Wait for Cordova to connect with the device
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Cordova is ready to be used!
+    function onDeviceReady() {
+        pictureSource = navigator.camera.PictureSourceType;
+        destinationType = navigator.camera.DestinationType;
+    }
+
+    
+    
+
+    // Called if something bad happens.
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
+    function sendPhoto() {
+      var time = new Date().getTime();
+      var fileName = "uploads/" + time + ".jpg";
+
+      // Send to EC2.
+      var uri = "index.php";
+
+      // TODO: decode the image on the server side and create the binary file.
+      // jQuery.ajax() does not support the transfer of binary data.
+      
+    }
+
+    function show(contentClass, pageParams) {
+      jQuery('div.content').removeClass('active');
+      jQuery('div.content.' + contentClass).addClass('active');
+
+      if ('list-disciplines' == contentClass) {
+        jQuery.getJSON("http://198.211.112.37:8080/boards", function(data) {
+          var imagem = '';
+
+          jQuery.each(data, function(key, val) {
+            imagem += "<li><a href='" + val.image_url + "'><img style='width: 100%' src='" + val.image_url + "'><h2>" + val.discipline + "</h2></a></li>";
+          });
+
+          jQuery('#lousas').html(imagem);
+        });
+      }
+
+      params = pageParams;
+    }
+
+    jQuery('document').ready(function() {
+      jQuery('div.content.index').addClass('active');
+    });
+
+    </script>
+
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.0.css" />
+    <link rel="stylesheet" href="css/lousa.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div data-role="page" data-theme="a">
+      <div data-role="header" data-position="inline">
+        <h1>Cidades++</h1>
+      </div>
+
+      <div class="content index" data-role="content" data-theme="a">
+        <h1 class='title'>Clique sobre a opção desejada</h1>
+        <ul data-role="listview" data-inset="true" data-filter="false">
+          <li><a href="#" onclick="show('list-saldo');">Saldo</a></li>
+          <li><a href="#" onclick="show('list-zona');">Zona Azul</a></li>
+          <li><a href="#" onclick="show('list-recarga');">Recarga</a></li>
+        </ul>
+      </div>
+
+      
+      <!-- inicio página Saldo-->
+      <div class="content list-saldo" data-role="content" data-theme="a">
+        <h1 class='title'>Saldo</h1>
+        <div data-role="fieldcontain" class="ui-hide-label">
+	    <label for="username">Saldo</label>
+	   <input type="text" name="saldo" id="Saldo" value="" placeholder="Saldo"/>
+     <br></br><a href="#" onclick="show('index')"data-role="button" data-inline="true">&laquo;</a>
+      </div>
+        
+      </div>
+      <!-- incio página Zona Azul -->
+      <div class="content list-zona" data-role="content">
+        <h1 class='title'>Tempo</h1>
+        	
+		<fieldset data-role="controlgroup">
+		<legend>Tempo</legend>
+     	<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+     	<label for="radio-choice-1">1 hora</label>
+     	<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+     	<label for="radio-choice-2">2 horas</label>
+		</fieldset>
+      <br><br> 
+      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Confirmar</a>
+      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Cancelar</a>
+      </div>
+
+      <!-- inicio página Recarga -->
+   	  <div class="content list-recarga" data-role="content">
+        <h1 class='title'>Recarga</h1>
+        	
+		<label for="select-choice-0" class="select">Forma de pagamento</label>
+		<select name="select-choice-0" id="select-choice-0">
+   		<option value="cartao">Cartão de Credito</option>
+   		<option value="boleto">Boleto</option>
+      </select>
+      
+        <fieldset data-role="controlgroup">
+        <legend>Valores</legend>
+     	<input type="radio" name="radio-choice" id="radio-choice-10" value="choice-10" checked="checked" />
+     	<label for="radio-choice-10">R$ 10,00 </label>
+     	<input type="radio" name="radio-choice" id="radio-choice-20" value="choice-20"  />
+     	<label for="radio-choice-20">R$ 20,00</label>
+        <input type="radio" name="radio-choice" id="radio-choice-50" value="choice-50"  />
+     	<label for="radio-choice-50">R$ 50,00</label>
+        <input type="radio" name="radio-choice" id="radio-choice-100" value="choice-100"  />
+     	<label for="radio-choice-100">R$ 100,00</label>
+		</fieldset>
+    <br><br> 
+      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Confirmar</a>
+      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Cancelar</a>
+
+      </div>
+    </div>
+  </body>
+</html>
