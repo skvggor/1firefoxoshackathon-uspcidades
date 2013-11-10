@@ -1,0 +1,3 @@
+# Arquivos que devem ser ignorados
+.gitignore
+mysql_crud.php

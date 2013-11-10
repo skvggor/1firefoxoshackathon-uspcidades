@@ -3,10 +3,10 @@
   "description": "Ajude a transformar o trânsito e as ruas da sua cidade.",
   "launch_path": "/telas-cidade-mais/uspcidades/index_motorista.html",
   "icons": {
-  "128": "/images/logo128.png"
+  "60": "/images/logo60.png"
 },
   "developer": {
-  "name": "Equipe Cidade++",
+  "name": "Equipe Cidade+",
   "url": "https://github.com/marcker/1firefoxoshackathon-uspcidades"
 },
   "default_locale": "pt-br",
@@ -14,10 +14,10 @@
   "type": "privileged",
   "permissions": {
         "geolocation": {
-            "description" : "Used to locate me"
+            "description": ""
         },
-    "systemXHR": { 
-        "description": "Required to make Network calls" 
+    "systemXHR": {
+        "description": ""
       }
     }
 }
