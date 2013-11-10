@@ -11,7 +11,6 @@ Equipe:
 * [Ryoji Neto](https://github.com/Ryojikn);
 * [Áliston Cassimiro](https://github.com/cassimiro);
 * [Ricardo Ogliari](https://github.com/ricardoogliari);
-* Mariana Hungria.
 
 Conhecimento
 ==============
