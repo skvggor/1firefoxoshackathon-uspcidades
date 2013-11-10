@@ -3,7 +3,7 @@
   "description": "Ajude a transformar o trânsito e as ruas da sua cidade.",
   "launch_path": "/telas-cidade-mais/uspcidades/index_motorista.html",
   "icons": {
-  "60": "/images/logo60.png"
+  "128": "/images/logo60.png"
 },
   "developer": {
   "name": "Equipe Cidade+",
