@@ -1,6 +1,5 @@
 <?php
 header("Content-type: application/json");
-
 include "classes/mysql_crud.php";
 
 function obterAvisos() {
@@ -16,7 +15,5 @@ function obterAvisos() {
   $ObjJSONValido = str_replace("]", "]}", str_replace("[", "{ \"avisos\": [", $ObjJSON));
   return $ObjJSONValido;
 }
-
 echo obterAvisos();
-
 ?>
