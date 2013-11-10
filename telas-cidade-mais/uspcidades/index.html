@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Caidade</title>
+    <title>Cidade ++</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.min.js"></script>
@@ -75,10 +75,33 @@
   <body>
     <div data-role="page" data-theme="a">
       <div data-role="header" data-position="inline">
-        <h1>Cidades++</h1>
+        <h1>Cidade ++</h1>
+      </div>
+      <div class="content index" data-role="content" data-theme="a">
+      <h1 class='title'>Bem-Vindo</h1>
+      <label for="text-basic">E-mail</label>
+      <input type="text" name="text-basic" id="text-basic" value="">
+      <label for="password">Senha</label>
+      <input type="password" name="password" id="password" value="" autocomplete="off">
+      <a href="#" onclick="show('cadastre');"><h3>Cadastre-se</h3></a>
+      <br><a href="#" data-role="button" type="submit" onclick="show('list-principal');" value="Submit">Entrar</a>
       </div>
 
-      <div class="content index" data-role="content" data-theme="a">
+      <!-- inicio página Cadastro -->
+      <div class="content cadastre" data-role="content" data-theme="a">
+        <h1 class='title'>Cadastre-se</h1>
+        <ul data-role="fieldcontain" class="ui-hide-label">
+        <label for="username">Nome</label>
+        <input type="text" name="nome" id="nome" value="" placeholder=""/>
+        <br><br><label for="username">E-mail</label>
+        <input type="text" name="email" id="email" value="" placeholder="seuemail@provedor.com"/>
+        <br><br><label for="username">Placa do veiculo</label>
+        <input type="text" name="placa_veiculo" id="placa_veiculo" value="" placeholder=""/>
+        <li><a href="#" onclick="show('list-principal');"data-role="button" data-inline="true">Cadastrar</a></li>
+       </div>
+
+      <!-- inicio página Principal -->
+      <div class="content list-principal" data-role="content" data-theme="a">
         <h1 class='title'>Clique sobre a opção desejada</h1>
         <ul data-role="listview" data-inset="true" data-filter="false">
           <li><a href="#" onclick="show('list-saldo');">Saldo</a></li>
@@ -94,7 +117,7 @@
         <div data-role="fieldcontain" class="ui-hide-label">
 	    <label for="username">Saldo</label>
 	   <input type="text" name="saldo" id="Saldo" value="" placeholder="Saldo"/>
-     <br></br><a href="#" onclick="show('index')"data-role="button" data-inline="true">&laquo;</a>
+     <br></br><a href="#" onclick="show('list-principal')"data-role="button" data-inline="true">&laquo;</a>
       </div>
         
       </div>
@@ -110,8 +133,8 @@
      	<label for="radio-choice-2">2 horas</label>
 		</fieldset>
       <br><br> 
-      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Confirmar</a>
-      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Cancelar</a>
+      <a href="#" onclick="show('list-principal')" data-role="button" data-inline="true">Confirmar</a>
+      <a href="#" onclick="show('list-principal')" data-role="button" data-inline="true">Cancelar</a>
       </div>
 
       <!-- inicio página Recarga -->
@@ -135,9 +158,8 @@
         <input type="radio" name="radio-choice" id="radio-choice-100" value="choice-100"  />
      	<label for="radio-choice-100">R$ 100,00</label>
 		</fieldset>
-    <br><br> 
-      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Confirmar</a>
-      <a href="#" onclick="show('index')" data-role="button" data-inline="true">Cancelar</a>
+      <a href="#" onclick="show('list-principal')" data-role="button" data-inline="true">Confirmar</a>
+      <a href="#" onclick="show('list-principal')" data-role="button" data-inline="true">Cancelar</a>
 
       </div>
     </div>
