@@ -1,4 +1,4 @@
-1º Hackathon USP Cidades: desafios urbanos em Firefox OS
+1º Hackathon USP Cidades: desafios urbanos em Firefox OS - Projeto Cidade+
 ==============================
 
 Repositório que contém a aplicação que desenvolvemos no 1º Hackathon USP Cidades: desafios urbanos em Firefox OS
@@ -10,7 +10,7 @@ Equipe:
 * [Hugo Tanaka](https://github.com/hugoht1);
 * [Ryoji Neto](https://github.com/Ryojikn);
 * [Áliston Cassimiro](https://github.com/cassimiro);
-* [Ricardo Ogliari](https://github.com/ricardoogliari);
+* [Ricardo Ogliari](https://github.com/ricardoogliari).
 
 Conhecimento
 ==============
